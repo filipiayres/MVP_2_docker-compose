@@ -1,0 +1,106 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Pacientes API
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /pacientes:
+    get:
+      summary: Get all pacientes
+      description: Retrieve a list of all pacientes
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Paciente'
+
+    post:
+      summary: Create a new paciente
+      description: Create a new paciente with the provided data
+      parameters:
+        - name: paciente
+          in: body
+          description: Paciente object
+          schema:
+            $ref: '#/definitions/Paciente'
+      responses:
+        201:
+          description: Paciente created successfully
+
+  /pacientes/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        description: ID of the paciente
+
+    get:
+      summary: Get a specific paciente
+      description: Retrieve a specific paciente by ID
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/Paciente'
+        404:
+          description: Paciente not found
+
+    put:
+      summary: Update a specific paciente
+      description: Update an existing paciente with the provided data
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          description: ID of the paciente
+        - name: paciente
+          in: body
+          description: Paciente object
+          schema:
+            $ref: '#/definitions/Paciente'
+      responses:
+        200:
+          description: Paciente updated successfully
+        404:
+          description: Paciente not found
+
+    delete:
+      summary: Delete a specific paciente
+      description: Delete a specific paciente by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          description: ID of the paciente
+      responses:
+        204:
+          description: Paciente deleted successfully
+        404:
+          description: Paciente not found
+
+definitions:
+  Paciente:
+    type: object
+    properties:
+      nome:
+        type: string
+      cpf:
+        type: string
+      cep:
+        type: string
+      bairro:
+        type: string
+      rua:
+        type: string

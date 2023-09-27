@@ -1,0 +1,5 @@
+flask==2.3.3
+flask_sqlalchemy==3.1.1
+sqlalchemy_serializer==1.4.1
+flask-swagger-ui==4.11.1
+pyyaml==6.0.1
